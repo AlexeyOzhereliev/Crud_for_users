@@ -23,23 +23,23 @@ async def get_token(token_data: TokenData,
                  token_type="Bearer")
 
 
-@router.post("/users", tags=["Users"], response_model=User)
+@router.post("/users", tags=["Users"], response_model=User, response_model_exclude={'hashed_password', 'id'})
 async def register_user(user: UserIn,
                         users: UsersRepository = Depends(get_user_repository)):
     return await users.create_user(user)
 
 
-@router.get("/users", tags=["Users"], response_model=List[User])
+@router.get("/users", tags=["Users"], response_model=List[User], response_model_exclude={'hashed_password', 'id'})
 async def read_users(users: UsersRepository = Depends(get_user_repository)):
     return await users.get_all_users()
 
 
-@router.get("/users/{id}", tags=["Users"], response_model=User)
+@router.get("/users/{id}", tags=["Users"], response_model=User, response_model_exclude={'hashed_password', 'id'})
 async def read_user(id: int, users: UsersRepository = Depends(get_user_repository)):
     return await users.get_user_by_id(id=id)
 
 
-@router.put("/users/{id}", tags=["Users"], response_model=User)
+@router.put("/users/{id}", tags=["Users"], response_model=User, response_model_exclude={'hashed_password', 'id'})
 async def update_user(id: int,
                       user: UserIn,
                       users: UsersRepository = Depends(get_user_repository),
