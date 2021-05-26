@@ -34,6 +34,11 @@ async def read_users(users: UsersRepository = Depends(get_user_repository)):
     return await users.get_all_users()
 
 
+@router.get("/users/{id}", tags=["Users"], response_model=User)
+async def read_user(id: int, users: UsersRepository = Depends(get_user_repository)):
+    return await users.get_user_by_id(id=id)
+
+
 @router.put("/users/{id}", tags=["Users"], response_model=User)
 async def update_user(id: int,
                       user: UserIn,
@@ -52,4 +57,3 @@ async def delete_user(id: int, users: UsersRepository = Depends(get_user_reposit
     if user_being_deleted is None or user_being_deleted.username != current_user.username:
         return HTTPException(status_code=404, detail="User not found")
     return await users.delete_user(id=id)
-
