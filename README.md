@@ -3,7 +3,7 @@
 For the API to work:
 
 - install Postgresql
-- install requrements
+- install requirements
 - create .env file 
 - create the following variables in the.env:
 
