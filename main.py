@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from database import database
 import endpoints
-from models import users
+
 
 app = FastAPI(title="CRUD for Users",
               description="Test task documentation")

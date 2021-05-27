@@ -9,7 +9,7 @@ class UsersRepository:
     def __init__(self, database: Database):
         self.database = database
 
-    async def get_all_users(self, skip: int = 0, limit: int = 100):
+    async def get_all_users(self):
         query = users.select()
         return await self.database.fetch_all(query)
 
