@@ -6,6 +6,7 @@ from security import verify_password, create_access_token
 from users_repository import UsersRepository
 from depends import get_user_repository, get_current_user
 
+
 router = APIRouter()
 
 
@@ -26,6 +27,12 @@ async def get_token(token_data: TokenData,
 @router.post("/users", tags=["Users"], response_model=User, response_model_exclude={'hashed_password', 'id'})
 async def register_user(user: UserIn,
                         users: UsersRepository = Depends(get_user_repository)):
+    bd_user = await users.get_user_by_username(user.username)
+    bd_email = await users.get_user_by_email(user.email)
+    if bd_user is not None:
+        raise HTTPException(status_code=500, detail='This username already exists')
+    elif bd_email is not None:
+        raise HTTPException(status_code=500, detail='This email already exists')
     return await users.create_user(user)
 
 
@@ -45,8 +52,14 @@ async def update_user(id: int,
                       users: UsersRepository = Depends(get_user_repository),
                       current_user: User = Depends(get_current_user)):
     old_user = await users.get_user_by_id(id=id)
+    bd_user = await users.get_user_by_username(user.username)
+    bd_email = await users.get_user_by_email(user.email)
     if old_user is None or old_user.username != current_user.username:
         return HTTPException(status_code=404, detail="User not found")
+    if bd_user is not None:
+        raise HTTPException(status_code=500, detail='This username already exists')
+    elif bd_email is not None:
+        raise HTTPException(status_code=500, detail='This email already exists')
     return await users.update_user(id=id, user=user)
 
 
