@@ -1,13 +1,9 @@
-import os
-
 import databases
-import dotenv
 import sqlalchemy
 
+from settings import DATABASE_URL
 
-dotenv.load_dotenv()
 
-DATABASE_URL = os.getenv("DATABASE_URL")
 database = databases.Database(DATABASE_URL)
 metadata = sqlalchemy.MetaData()
 engine = sqlalchemy.create_engine(
