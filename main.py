@@ -1,6 +1,7 @@
 from fastapi import FastAPI
-from database import database
+
 import endpoints
+from database import database
 
 
 app = FastAPI(title="CRUD for Users",

@@ -1,6 +1,9 @@
-import sqlalchemy
 from datetime import datetime
+
+import sqlalchemy
+
 from database import metadata, engine
+
 
 users = sqlalchemy.Table(
     "users",

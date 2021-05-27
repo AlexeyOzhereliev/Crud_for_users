@@ -1,10 +1,11 @@
-from fastapi import APIRouter, Depends, HTTPException, status
 from typing import List
 
+from fastapi import APIRouter, Depends, HTTPException, status
+
+from depends import get_user_repository, get_current_user
 from schemas import User, UserIn, TokenData, Token
 from security import verify_password, create_access_token
 from users_repository import UsersRepository
-from depends import get_user_repository, get_current_user
 
 
 router = APIRouter()

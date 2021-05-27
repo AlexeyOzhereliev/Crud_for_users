@@ -1,7 +1,9 @@
 import os
+
 import databases
-import sqlalchemy
 import dotenv
+import sqlalchemy
+
 
 dotenv.load_dotenv()
 

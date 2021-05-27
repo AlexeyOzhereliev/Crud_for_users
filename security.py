@@ -1,10 +1,12 @@
 import os
+from datetime import datetime, timedelta
+
+import dotenv
 from fastapi import HTTPException, Request, status
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from passlib.context import CryptContext
-from datetime import datetime, timedelta
 from jose import jwt, JWTError
-import dotenv
+
 
 dotenv.load_dotenv()
 ACCESS_TOKEN_EXPIRE_MINUTES = os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES")
