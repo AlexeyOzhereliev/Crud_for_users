@@ -10,4 +10,6 @@ SECRET_KEY (For example: SECRET_KEY=0f4a215925bafc81d22354449f7df5d6747ce4efe449
 ALGORITHM (For example: ALGORITHM=HS256);
 ACCESS_TOKEN_EXPIRE_MINUTES (For example: ACCESS_TOKEN_EXPIRE_MINUTES=15)
 
+How to run:
+- uvicorn main:app --reload
 
