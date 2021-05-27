@@ -1,7 +1,5 @@
-import os
 from datetime import datetime, timedelta
 
-import dotenv
 from fastapi import HTTPException, Request, status
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from passlib.context import CryptContext
