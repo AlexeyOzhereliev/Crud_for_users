@@ -31,9 +31,9 @@ async def register_user(user: UserIn,
     bd_user = await users.get_user_by_username(user.username)
     bd_email = await users.get_user_by_email(user.email)
     if bd_user is not None:
-        raise HTTPException(status_code=500, detail='This username already exists')
+        raise HTTPException(status_code=400, detail='This username already exists')
     elif bd_email is not None:
-        raise HTTPException(status_code=500, detail='This email already exists')
+        raise HTTPException(status_code=400, detail='This email already exists')
     return await users.create_user(user)
 
 
@@ -58,9 +58,9 @@ async def update_user(id: int,
     if old_user is None or old_user.username != current_user.username:
         return HTTPException(status_code=404, detail="User not found")
     if bd_user is not None:
-        raise HTTPException(status_code=500, detail='This username already exists')
+        raise HTTPException(status_code=400, detail='This username already exists')
     elif bd_email is not None:
-        raise HTTPException(status_code=500, detail='This email already exists')
+        raise HTTPException(status_code=400, detail='This email already exists')
     return await users.update_user(id=id, user=user)
 
 
